@@ -1,0 +1,34 @@
+{% extends 'base_template.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    {% if items.paginator.count > 0 %}
+    {% else %}
+        <div class="text-center">No lists found...
+            <a href="{% url 'create_list' %}">Create?</a>
+        </div>
+    {% endif %}
+
+    {% if items.paginator.count >= per_page %}
+        <div class="text-center">
+            {% if items.has_previous %}
+                <a href="?p=1">first</a>
+                <a href="?p={{ items.previous_page_number }}">&laquo;</a>
+            {% endif %}
+
+            {% for page in items.paginator.page_range %}
+                {% if page == items.number %}
+                    {{ current_page }}
+                {% else %}
+                    <a href="?p={{ page }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if items.has_next %}
+                <a href="?p={{ items.next_page_number }}">&raquo;</a>
+                <a href="?p={{ items.paginator.num_pages }}">last</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
