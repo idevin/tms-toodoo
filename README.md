@@ -1,6 +1,6 @@
-# U.short
+# Too.Doo.
 
-Shorten urls with Python django framework
+Simple Todo list with foundationJS and Django framework
 
 ## Getting Started
 
