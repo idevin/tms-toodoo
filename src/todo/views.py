@@ -1,25 +1,46 @@
-from django.shortcuts import render
-from django.core.paginator import Paginator
-from django.http import HttpResponse
-from todo import models
-from toodoo import settings
+from django.shortcuts import render, redirect
+from todo.models import List
+from todo.forms import ListForm
 
 
 def index(request):
-    lists = models.List.objects.all().order_by('-id')
+    items = List.objects.all().order_by('-id')
 
-    paginator = Paginator(lists, settings.PER_PAGE)
-    page = request.GET.get('p', 1)
-    items = paginator.get_page(page)
-
-    context = {
-        'items': items,
-        'current_page': page,
-        'per_page': settings.PER_PAGE
-    }
-
-    return render(request, 'index.html', context=context)
+    return render(request, 'index.html', context={
+        'items': items
+    })
 
 
 def create_list(request):
-    return HttpResponse('create_list')
+    form = ListForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'create_list.html', context=context)
+
+
+def store_list(request):
+    form = ListForm(request.POST)
+
+    if request.method == 'POST':
+        if form.is_valid():
+
+            List.objects.create(title=request.POST.get('title'))
+
+            return redirect(index)
+        else:
+            return render(request, 'create_list.html', context={
+                'form': form
+            })
+    else:
+        return redirect(create_list)
+
+
+def create_note(request, list_id):
+    pass
+
+
+def destroy_list(request, list_id):
+    pass

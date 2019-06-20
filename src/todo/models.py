@@ -9,7 +9,7 @@ class List(models.Model):
 
 class Priority(models.Model):
     title = models.CharField(null=False, default=None, max_length=255)
-    color = models.CharField(null=False, default=None, max_length=255)
+    color = models.CharField(null=False, default=None, max_length=10)
 
 
 class Note(models.Model):
