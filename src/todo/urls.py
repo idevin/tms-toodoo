@@ -20,6 +20,8 @@ urlpatterns = [
     path('', views.index),
     path('create_list', views.create_list, name='create_list'),
     path('store_list', views.store_list, name='store_list'),
+    path('edit_list/<list_id>', views.edit_list, name='edit_list'),
+    path('update_list/<list_id>', views.update_list, name='update_list'),
     path('destroy_list/<list_id>', views.destroy_list, name='destroy_list'),
     path('create_note/<list_id>', views.create_note, name='create_note')
 ]

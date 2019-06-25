@@ -36,13 +36,30 @@
     .list-block {
         background-color: #f5f5f5;
         border-radius: 3px;
-        margin:5px;
+        margin: 5px;
     }
 
     .destroy-list {
         font-size: 70%;
         color: #8a8a8a;
     }
+
+    .list-title {
+        margin: 0;
+        padding: 5px 0;
+        overflow: hidden;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .list-title .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+        content: none;
+    }
+
+    .list-title .dropdown.menu > li.is-dropdown-submenu-parent > a {
+        padding: 0;
+    }
+
 </style>
 
 </body>
